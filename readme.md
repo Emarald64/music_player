@@ -1,0 +1,36 @@
+# Pronoun Palace Music Player
+
+> [!IMPORTANT]
+> You need to buy Pronoun Palace to use this mod. It's a great game. Get it [here](https://store.steampowered.com/app/3618850/Pronoun_Palace/)
+
+Adds a music player to the extras menu allowing you to easilly listen to this game's increadible soundtrack
+
+## How to install
+
+1. Create a `mods` folder next to the game's executable
+2. Download `music_player.zip` from the [releases page](https://github.com/Emarald64/music_player/releases)
+3. Extract `music_player.zip` into the mods folder you created
+
+The folder structure should look similar to this
+```
+Pronoun Palace
+| pronoun_palace.exe
+| mods
+| | music_player
+| | | mod.json
+| | | music_player.pck
+```
+
+## How to package
+
+1. Decompile the game using [gdsdecomp](https://github.com/GDRETools/gdsdecomp)
+2. Create a `mods` folder in the decompiled game and clone this repo into it
+3. Create a `mod_packs` folder and a `music_player` folder inside of that
+4. Make a file named `music_player.json` and copy the following into it
+```
+{
+    "id": "music_player",
+}
+```
+5. Open `mods/music_player/mod_packer.gd` and press File->Run which should create the file music_player.pck in the root of the project
+6. Zip the new pck file and the mod.json in this repository together

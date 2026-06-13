@@ -1,0 +1,9 @@
+{
+    "id": "music_player",
+    "packs": [
+		{
+			"path": "music_player.pck",
+			"override": false,
+		}
+	]
+}
