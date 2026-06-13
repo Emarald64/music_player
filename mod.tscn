@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0lakwhx5uvta"]
 
-[ext_resource type="Script" uid="uid://ctobg3dp7p63o" path="res://mod.gd" id="1_is2cf"]
+[ext_resource type="Script" uid="uid://ctobg3dp7p63o" path="res://mods/music_player/mod.gd" id="1_is2cf"]
 
 [node name="Node" type="Node" unique_id=189526636]
 script = ExtResource("1_is2cf")

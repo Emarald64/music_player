@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://exetyk33g34o" path="res://mods/music_player/player.png" id="3_smoxy"]
 [ext_resource type="Texture2D" uid="uid://bk4t6p3xdyhkr" path="res://mods/music_player/button.png" id="4_d6qde"]
 [ext_resource type="Texture2D" uid="uid://dgsm4beddbo24" path="res://mods/music_player/cassette.png" id="4_jhobv"]
+[ext_resource type="Texture2D" uid="uid://lqi0bdgq686w" path="res://mods/music_player/eject_pressed.png" id="5_ela41"]
 [ext_resource type="Texture2D" uid="uid://3khxuscqpphi" path="res://mods/music_player/icons.png" id="5_yk70k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhobv"]
@@ -166,16 +167,19 @@ offset_right = -28.0
 offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.09019608, 0.1882353, 0.25490198, 1)
 
 [node name="Current Song" type="Label" parent="PositionRoot/Panel/Sprite2D" index="1" unique_id=758911426]
 unique_name_in_owner = true
 offset_left = -22.0
 offset_top = -38.000004
-offset_right = 22.000004
-offset_bottom = -27.000004
-theme_override_font_sizes/font_size = 6
+offset_right = 124.66664
+offset_bottom = -4.6666527
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 18
 text = "Author"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Cassette" type="Sprite2D" parent="PositionRoot/Panel/Sprite2D" index="2" unique_id=293318446]
@@ -185,15 +189,16 @@ position = Vector2(-1, 8.666664)
 texture = ExtResource("4_jhobv")
 hframes = 2
 
-[node name="Eject Button" type="Button" parent="PositionRoot/Panel/Sprite2D" index="3" unique_id=35885330]
+[node name="Eject Button" type="TextureButton" parent="PositionRoot/Panel/Sprite2D" index="3" unique_id=1183512978]
+unique_name_in_owner = true
 offset_left = 12.000003
 offset_top = -23.0
 offset_right = 26.000004
 offset_bottom = -9.0
-flat = true
+texture_pressed = ExtResource("5_ela41")
 
 [node name="Buttons" type="VBoxContainer" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="2" unique_id=1546215838]
-z_index = 2
+z_index = 1
 layout_mode = 0
 offset_left = 10.0
 offset_top = 76.0
@@ -204,6 +209,7 @@ theme_override_constants/separation = 1
 
 [node name="Next" type="TextureButton" parent="PositionRoot/Panel/Buttons" index="0" unique_id=1216346550]
 layout_mode = 2
+offset_transform_enabled = true
 texture_normal = ExtResource("4_d6qde")
 
 [node name="Icon" type="TextureRect" parent="PositionRoot/Panel/Buttons/Next" index="0" unique_id=1512238249]
@@ -224,6 +230,7 @@ stretch_mode = 2
 
 [node name="Previous" type="TextureButton" parent="PositionRoot/Panel/Buttons" index="1" unique_id=1280316058]
 layout_mode = 2
+offset_transform_enabled = true
 texture_normal = ExtResource("4_d6qde")
 
 [node name="Icon" type="TextureRect" parent="PositionRoot/Panel/Buttons/Previous" index="0" unique_id=1021027614]
@@ -244,6 +251,7 @@ stretch_mode = 2
 
 [node name="Reset" type="TextureButton" parent="PositionRoot/Panel/Buttons" index="2" unique_id=1268314377]
 layout_mode = 2
+offset_transform_enabled = true
 texture_normal = ExtResource("4_d6qde")
 
 [node name="Icon" type="TextureRect" parent="PositionRoot/Panel/Buttons/Reset" index="0" unique_id=2080810699]
@@ -265,7 +273,21 @@ stretch_mode = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="3" unique_id=2017125228]
 libraries/ = SubResource("AnimationLibrary_sxwsu")
 
-[connection signal="pressed" from="PositionRoot/Panel/Sprite2D/Eject Button" to="PositionRoot/Panel/AnimationPlayer" method="play" binds= [&"Flip"]]
+[node name="Eject Button" type="TextureButton" parent="." index="2" unique_id=35550558]
+layout_mode = 0
+offset_left = 12.000003
+offset_top = -23.0
+offset_right = 26.000004
+offset_bottom = -9.0
+texture_pressed = ExtResource("5_ela41")
+
+[connection signal="pressed" from="PositionRoot/Panel/Sprite2D/Eject Button" to="." method="start_cassette_switch"]
+[connection signal="button_down" from="PositionRoot/Panel/Buttons/Next" to="PositionRoot/Panel/Buttons/Next" method="set_offset_transform_position" binds= [Vector2(2, 0)]]
+[connection signal="button_up" from="PositionRoot/Panel/Buttons/Next" to="PositionRoot/Panel/Buttons/Next" method="set_offset_transform_position" binds= [Vector2(0, 0)]]
 [connection signal="pressed" from="PositionRoot/Panel/Buttons/Next" to="." method="_on_next_song_pressed"]
+[connection signal="button_down" from="PositionRoot/Panel/Buttons/Previous" to="PositionRoot/Panel/Buttons/Previous" method="set_offset_transform_position" binds= [Vector2(2, 0)]]
+[connection signal="button_up" from="PositionRoot/Panel/Buttons/Previous" to="PositionRoot/Panel/Buttons/Previous" method="set_offset_transform_position" binds= [Vector2(0, 0)]]
 [connection signal="pressed" from="PositionRoot/Panel/Buttons/Previous" to="." method="_on_prevous_song_pressed"]
+[connection signal="button_down" from="PositionRoot/Panel/Buttons/Reset" to="PositionRoot/Panel/Buttons/Reset" method="set_offset_transform_position" binds= [Vector2(2, 0)]]
+[connection signal="button_up" from="PositionRoot/Panel/Buttons/Reset" to="PositionRoot/Panel/Buttons/Reset" method="set_offset_transform_position" binds= [Vector2(0, 0)]]
 [connection signal="pressed" from="PositionRoot/Panel/Buttons/Reset" to="." method="_reset_music"]

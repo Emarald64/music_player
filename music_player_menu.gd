@@ -14,9 +14,10 @@ const ALTERED_NAMED={
 
 @onready var song_label=%"Current Song"
 
-#func _ready()->void:
-    #song_label.text="Author"
-    #super._ready()
+func _ready()->void:
+    var clickmask=BitMap.new()
+    clickmask.create_from_image_alpha(%"Eject Button".texture_pressed.get_image())
+    %"Eject Button".texture_click_mask=clickmask
 
 func update_song()->void:
     if not animinating:
@@ -27,17 +28,17 @@ func update_song()->void:
             song_label.text=ALTERED_NAMED.get(key)
         else:
             song_label.text=key.capitalize()
-        if song_label.text.length()>12:
-            song_label.add_theme_font_size_override("font_size",5)
+        if song_label.text.length()<12:
+            song_label.add_theme_font_size_override("font_size",18)
+        elif song_label.text.length()<18:
+            song_label.add_theme_font_size_override("font_size",15)
         else:
-            song_label.add_theme_font_size_override("font_size",6)
+            song_label.add_theme_font_size_override("font_size",10)
         AudioManager.play_music(Globals.MUSIC[key],true)
-
 
 func _on_next_song_pressed() -> void:
     song_index+=1
     update_song()
-
 
 func _on_prevous_song_pressed() -> void:
     song_index-=1
@@ -58,9 +59,17 @@ func start_cassette_switch()->void:
         animinating=true
         AudioManager.stop_music()
         $PositionRoot/Panel/AnimationPlayer.play(&"Flip")
+        %"Eject Button".disabled=true
 
 func end_cassette_switch()->void:
     animinating=false
     playing_shadow=not playing_shadow
     song_index=0
+    %"Eject Button".disabled=false
     update_song()
+
+func _input(event: InputEvent) -> void:
+    #print(event)
+    if animinating and event is InputEventMouseButton and not event.pressed and event.button_index==1:
+        print("skipping")
+        $PositionRoot/Panel/AnimationPlayer.advance(1)
