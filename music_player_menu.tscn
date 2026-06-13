@@ -2,18 +2,269 @@
 
 [ext_resource type="PackedScene" uid="uid://c6vvnk61vcc48" path="res://source/ui/menu/generic/big_menu_panel.tscn" id="1_0xiy1"]
 [ext_resource type="Script" uid="uid://n0y2ut0a7m20" path="res://mods/music_player/music_player_menu.gd" id="2_quni4"]
+[ext_resource type="Texture2D" uid="uid://exetyk33g34o" path="res://mods/music_player/player.png" id="3_smoxy"]
+[ext_resource type="Texture2D" uid="uid://bk4t6p3xdyhkr" path="res://mods/music_player/button.png" id="4_d6qde"]
+[ext_resource type="Texture2D" uid="uid://dgsm4beddbo24" path="res://mods/music_player/cassette.png" id="4_jhobv"]
+[ext_resource type="Texture2D" uid="uid://3khxuscqpphi" path="res://mods/music_player/icons.png" id="5_yk70k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhobv"]
+atlas = ExtResource("5_yk70k")
+region = Rect2(0, 0, 5, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ahak"]
+atlas = ExtResource("5_yk70k")
+region = Rect2(5, 0, 5, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ela41"]
+atlas = ExtResource("5_yk70k")
+region = Rect2(10, 0, 5, 9)
+
+[sub_resource type="Animation" id="Animation_ela41"]
+resource_name = "Flip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Cassette:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 8.666664), Vector2(-1, 8.666664), Vector2(51.666668, 8.666664), Vector2(51.666668, 8.666664), Vector2(-1, 8.666664)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Cassette:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"switch_cassette_sprite"
+}, {
+"args": [],
+"method": &"end_cassette_switch"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Current Song:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_mnc81"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Cassette:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 8.666664)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Cassette:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Current Song:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxwsu"]
+_data = {
+&"Flip": SubResource("Animation_ela41"),
+&"RESET": SubResource("Animation_mnc81")
+}
 
 [node name="Music Player" unique_id=1499490309 instance=ExtResource("1_0xiy1")]
 script = ExtResource("2_quni4")
 full_screen_menu = false
 
-[node name="Button" type="Button" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="1" unique_id=453137051]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Play"
+[node name="Sprite2D" type="Sprite2D" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="1" unique_id=1031490390]
+z_index = 2
+position = Vector2(118, 145)
+scale = Vector2(3, 3)
+texture = ExtResource("3_smoxy")
+hframes = 2
 
-[node name="Current Song" type="Label" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="2" unique_id=758911426]
+[node name="ColorRect" type="ColorRect" parent="PositionRoot/Panel/Sprite2D" index="0" unique_id=781953819]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -43.0
+offset_right = -28.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09019608, 0.1882353, 0.25490198, 1)
+
+[node name="Current Song" type="Label" parent="PositionRoot/Panel/Sprite2D" index="1" unique_id=758911426]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = -38.000004
+offset_right = 22.000004
+offset_bottom = -27.000004
+theme_override_font_sizes/font_size = 6
+text = "Author"
+
+[node name="Cassette" type="Sprite2D" parent="PositionRoot/Panel/Sprite2D" index="2" unique_id=293318446]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(-1, 8.666664)
+texture = ExtResource("4_jhobv")
+hframes = 2
+
+[node name="Eject Button" type="Button" parent="PositionRoot/Panel/Sprite2D" index="3" unique_id=35885330]
+offset_left = 12.000003
+offset_top = -23.0
+offset_right = 26.000004
+offset_bottom = -9.0
+flat = true
+
+[node name="Buttons" type="VBoxContainer" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="2" unique_id=1546215838]
+z_index = 2
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 15.0
+offset_left = 10.0
+offset_top = 76.0
+offset_right = 19.0
+offset_bottom = 123.0
+scale = Vector2(3, 3)
+theme_override_constants/separation = 1
+
+[node name="Next" type="TextureButton" parent="PositionRoot/Panel/Buttons" index="0" unique_id=1216346550]
+layout_mode = 2
+texture_normal = ExtResource("4_d6qde")
+
+[node name="Icon" type="TextureRect" parent="PositionRoot/Panel/Buttons/Next" index="0" unique_id=1512238249]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -4.5
+offset_right = 2.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jhobv")
+stretch_mode = 2
+
+[node name="Previous" type="TextureButton" parent="PositionRoot/Panel/Buttons" index="1" unique_id=1280316058]
+layout_mode = 2
+texture_normal = ExtResource("4_d6qde")
+
+[node name="Icon" type="TextureRect" parent="PositionRoot/Panel/Buttons/Previous" index="0" unique_id=1021027614]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -4.5
+offset_right = 2.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8ahak")
+stretch_mode = 2
+
+[node name="Reset" type="TextureButton" parent="PositionRoot/Panel/Buttons" index="2" unique_id=1268314377]
+layout_mode = 2
+texture_normal = ExtResource("4_d6qde")
+
+[node name="Icon" type="TextureRect" parent="PositionRoot/Panel/Buttons/Reset" index="0" unique_id=2080810699]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -4.5
+offset_right = 2.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ela41")
+stretch_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="3" unique_id=2017125228]
+libraries/ = SubResource("AnimationLibrary_sxwsu")
+
+[connection signal="pressed" from="PositionRoot/Panel/Sprite2D/Eject Button" to="PositionRoot/Panel/AnimationPlayer" method="play" binds= [&"Flip"]]
+[connection signal="pressed" from="PositionRoot/Panel/Buttons/Next" to="." method="_on_next_song_pressed"]
+[connection signal="pressed" from="PositionRoot/Panel/Buttons/Previous" to="." method="_on_prevous_song_pressed"]
+[connection signal="pressed" from="PositionRoot/Panel/Buttons/Reset" to="." method="_reset_music"]
