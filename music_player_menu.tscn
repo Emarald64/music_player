@@ -176,6 +176,7 @@ offset_right = 22.000004
 offset_bottom = -27.000004
 theme_override_font_sizes/font_size = 6
 text = "Author"
+vertical_alignment = 1
 
 [node name="Cassette" type="Sprite2D" parent="PositionRoot/Panel/Sprite2D" index="2" unique_id=293318446]
 unique_name_in_owner = true

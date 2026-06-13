@@ -27,6 +27,10 @@ func update_song()->void:
             song_label.text=ALTERED_NAMED.get(key)
         else:
             song_label.text=key.capitalize()
+        if song_label.text.length()>12:
+            song_label.add_theme_font_size_override("font_size",5)
+        else:
+            song_label.add_theme_font_size_override("font_size",6)
         AudioManager.play_music(Globals.MUSIC[key],true)
 
 
@@ -40,16 +44,20 @@ func _on_prevous_song_pressed() -> void:
     update_song()
 
 func _reset_music()->void:
-    song_index=0
-    update_song()
+    if playing_shadow:
+        start_cassette_switch()
+    else:
+        song_index=0
+        update_song()
 
 func switch_cassette_sprite()->void:
     %Cassette.frame=1-%Cassette.frame
 
 func start_cassette_switch()->void:
-    animinating=true
-    AudioManager.stop_music()
-    $PositionRoot/Panel/AnimationPlayer.play(&"Filp")
+    if not animating:
+        animinating=true
+        AudioManager.stop_music()
+        $PositionRoot/Panel/AnimationPlayer.play(&"Flip")
 
 func end_cassette_switch()->void:
     animinating=false
