@@ -21,7 +21,7 @@ Pronoun Palace
 | | | music_player.pck
 ```
 
-## How to package
+## How to run in editor and package
 
 1. Decompile the game using [gdsdecomp](https://github.com/GDRETools/gdsdecomp)
 2. Create a `mods` folder in the decompiled game and clone this repo into it
@@ -32,5 +32,7 @@ Pronoun Palace
     "id": "music_player",
 }
 ```
-5. Open `mods/music_player/mod_packer.gd` and press File->Run which should create the file music_player.pck in the root of the project
-6. Zip the new pck file and the mod.json in this repository together
+5. Install godotsteam from the godot asset store
+6. Make whatever changes you want
+7. Open `mods/music_player/mod_packer.gd` and press File->Run which should create the file music_player.pck in the root of the project
+8. Zip the new pck file and the mod.json in this repository together
