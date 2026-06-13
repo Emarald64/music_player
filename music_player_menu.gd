@@ -18,6 +18,7 @@ func _ready()->void:
     var clickmask=BitMap.new()
     clickmask.create_from_image_alpha(%"Eject Button".texture_pressed.get_image())
     %"Eject Button".texture_click_mask=clickmask
+    super._ready()
 
 func update_song()->void:
     if not animinating:
@@ -38,13 +39,16 @@ func update_song()->void:
 
 func _on_next_song_pressed() -> void:
     song_index+=1
+    AudioManager.play_sound(Sounds.UI.DIFFICULTY,1.5)
     update_song()
 
 func _on_prevous_song_pressed() -> void:
     song_index-=1
+    AudioManager.play_sound(Sounds.UI.DIFFICULTY,.5)
     update_song()
 
 func _reset_music()->void:
+    AudioManager.play_sound(Sounds.UI.DIFFICULTY,1)
     if playing_shadow:
         start_cassette_switch()
     else:
@@ -56,12 +60,14 @@ func switch_cassette_sprite()->void:
 
 func start_cassette_switch()->void:
     if not animating:
+        AudioManager.play_sound(Sounds.UI.DIFFICULTY_HARDEST)
         animinating=true
         AudioManager.stop_music()
         $PositionRoot/Panel/AnimationPlayer.play(&"Flip")
         %"Eject Button".disabled=true
 
 func end_cassette_switch()->void:
+    AudioManager.play_sound(Sounds.UI.SHADOW_OFF)
     animinating=false
     playing_shadow=not playing_shadow
     song_index=0
@@ -73,3 +79,6 @@ func _input(event: InputEvent) -> void:
     if animinating and event is InputEventMouseButton and not event.pressed and event.button_index==1:
         print("skipping")
         $PositionRoot/Panel/AnimationPlayer.advance(1)
+
+func play_flip_sound()->void:
+    AudioManager.play_sound(preload("res://sounds/toss.wav"))
