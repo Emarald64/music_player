@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d11qakqmc80mx"]
+
+[ext_resource type="PackedScene" uid="uid://c6vvnk61vcc48" path="res://source/ui/menu/generic/big_menu_panel.tscn" id="1_0xiy1"]
+[ext_resource type="Script" uid="uid://n0y2ut0a7m20" path="res://mods/music_player/music_player_menu.gd" id="2_quni4"]
+
+[node name="Music Player" unique_id=1499490309 instance=ExtResource("1_0xiy1")]
+script = ExtResource("2_quni4")
+full_screen_menu = false
+
+[node name="Button" type="Button" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="1" unique_id=453137051]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Play"
+
+[node name="Current Song" type="Label" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="2" unique_id=758911426]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 15.0
