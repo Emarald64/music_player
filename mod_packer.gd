@@ -9,8 +9,8 @@ extends EditorScript
 
 func _run() -> void :
  var packer: = PCKPacker.new()
- packer.pck_start("music_player.pck")
- var files=Util.get_file_paths_recursive("res://mods/music_player/")
+ packer.pck_start("res://mod_packs/music_player/music_player.pck")
+ var files=Util.get_file_paths_recursive("res://mods/music_player")
  for file in files:
   print("adding "+file)
   if ResourceLoader.exists(file):
