@@ -5,6 +5,8 @@
 
 Adds a music player to the extras menu allowing you to easilly listen to this game's increadible soundtrack
 
+Credit to Rosa D’Vorah for making the cassette sprites
+
 ## How to install
 
 1. Create a `mods` folder next to the game's executable
@@ -26,12 +28,14 @@ Pronoun Palace
 1. Decompile the game using [gdsdecomp](https://github.com/GDRETools/gdsdecomp)
 2. Create a `mods` folder in the decompiled game and clone this repo into it
 3. Create a `mod_packs` folder and a `music_player` folder inside of that
-4. Make a file named `music_player.json` and copy the following into it
+4. Make a file named `mod.json` and copy the following into it
 ```
 {
     "id": "music_player",
 }
 ```
+> ![NOTE]
+> Pronoun Palace uses Godot version 4.7 which as of now is the beta version. Make sure are using the right version of the editor
 5. Install godotsteam from the godot asset store
 6. Make whatever changes you want
 7. Open `mods/music_player/mod_packer.gd` and press File->Run which should create the file music_player.pck in the root of the project

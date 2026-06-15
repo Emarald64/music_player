@@ -63,7 +63,7 @@ func start_cassette_switch()->void:
         AudioManager.play_sound(Sounds.UI.DIFFICULTY_HARDEST)
         animinating=true
         AudioManager.stop_music()
-        $PositionRoot/Panel/AnimationPlayer.play(&"Flip")
+        $PositionRoot/Panel/AnimationPlayer.play(&"Flip to A" if playing_shadow else &"Flip to B")
         %"Eject Button".disabled=true
 
 func end_cassette_switch()->void:

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://n0y2ut0a7m20" path="res://mods/music_player/music_player_menu.gd" id="2_quni4"]
 [ext_resource type="Texture2D" uid="uid://exetyk33g34o" path="res://mods/music_player/player.png" id="3_smoxy"]
 [ext_resource type="Texture2D" uid="uid://bk4t6p3xdyhkr" path="res://mods/music_player/button.png" id="4_d6qde"]
-[ext_resource type="Texture2D" uid="uid://dgsm4beddbo24" path="res://mods/music_player/cassette.png" id="4_jhobv"]
+[ext_resource type="Texture2D" uid="uid://lujbrdnwgjgf" path="res://mods/music_player/CassetteFlipSheet.png" id="4_ela41"]
 [ext_resource type="Texture2D" uid="uid://lqi0bdgq686w" path="res://mods/music_player/eject_pressed.png" id="5_ela41"]
 [ext_resource type="Texture2D" uid="uid://3khxuscqpphi" path="res://mods/music_player/icons.png" id="5_yk70k"]
 
@@ -20,8 +20,8 @@ region = Rect2(5, 0, 5, 9)
 atlas = ExtResource("5_yk70k")
 region = Rect2(10, 0, 5, 9)
 
-[sub_resource type="Animation" id="Animation_ela41"]
-resource_name = "Flip"
+[sub_resource type="Animation" id="Animation_sxwsu"]
+resource_name = "Flip to A"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,51 +44,116 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.4, 0.6, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-1, 8.666664), Vector2(-1, 8.666664), Vector2(51.666668, 8.666664), Vector2(51.666668, 8.666664), Vector2(-1, 8.666664)]
+"values": [Vector2(0, 9), Vector2(0, 9), Vector2(51.667, 9), Vector2(51.667, 9), Vector2(0, 9)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Cassette:scale")
+tracks/2/path = NodePath("../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.4, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"play_flip_sound"
 }, {
 "args": [],
-"method": &"switch_cassette_sprite"
+"method": &"end_cassette_switch"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Current Song:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Cassette:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+
+[sub_resource type="Animation" id="Animation_d3suh"]
+resource_name = "Flip to B"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Cassette:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 9), Vector2(0, 9), Vector2(51.667, 9), Vector2(51.667, 9), Vector2(0, 9)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_flip_sound"
 }, {
 "args": [],
 "method": &"end_cassette_switch"
 }]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("%Current Song:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Current Song:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Cassette:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6, 0]
 }
 
 [sub_resource type="Animation" id="Animation_mnc81"]
@@ -108,43 +173,44 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Cassette:position")
+tracks/1/path = NodePath("%Current Song:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, 8.666664)]
+"update": 1,
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Cassette:scale")
+tracks/2/path = NodePath("%Cassette:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [6]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%Current Song:visible")
+tracks/3/path = NodePath("%Cassette:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(0, 9)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sxwsu"]
 _data = {
-&"Flip": SubResource("Animation_ela41"),
+&"Flip to A": SubResource("Animation_sxwsu"),
+&"Flip to B": SubResource("Animation_d3suh"),
 &"RESET": SubResource("Animation_mnc81")
 }
 
@@ -154,7 +220,7 @@ full_screen_menu = false
 
 [node name="Sprite2D" type="Sprite2D" parent="PositionRoot/Panel" parent_id_path=PackedInt32Array(1955025572) index="1" unique_id=1031490390]
 z_index = 2
-position = Vector2(118, 145)
+position = Vector2(118, 129)
 scale = Vector2(3, 3)
 texture = ExtResource("3_smoxy")
 hframes = 2
@@ -188,9 +254,12 @@ vertical_alignment = 1
 [node name="Cassette" type="Sprite2D" parent="PositionRoot/Panel/Sprite2D" index="2" unique_id=293318446]
 unique_name_in_owner = true
 z_index = -1
-position = Vector2(-1, 8.666664)
-texture = ExtResource("4_jhobv")
-hframes = 2
+position = Vector2(0, 9)
+rotation = -1.5707964
+scale = Vector2(0.666, 0.666)
+texture = ExtResource("4_ela41")
+vframes = 7
+frame = 6
 
 [node name="Eject Button" type="TextureButton" parent="PositionRoot/Panel/Sprite2D" index="3" unique_id=1183512978]
 unique_name_in_owner = true
@@ -204,9 +273,9 @@ texture_pressed = ExtResource("5_ela41")
 z_index = 1
 layout_mode = 0
 offset_left = 10.0
-offset_top = 76.0
+offset_top = 60.0
 offset_right = 19.0
-offset_bottom = 123.0
+offset_bottom = 107.0
 scale = Vector2(3, 3)
 theme_override_constants/separation = 1
 
