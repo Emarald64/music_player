@@ -7,6 +7,8 @@ Adds a music player to the extras menu allowing you to easilly listen to this ga
 
 Credit to Rosa D’Vorah for making the cassette sprites
 
+[Demo Video](https://youtu.be/3lWMOFajQMs)
+
 ## How to install
 
 1. Create a `mods` folder next to the game's executable
