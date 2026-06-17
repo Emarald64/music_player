@@ -7,7 +7,7 @@ Adds a music player to the extras menu allowing you to easilly listen to this ga
 
 Credit to Rosa D’Vorah for making the cassette sprites
 
-[Demo Video](https://youtu.be/3lWMOFajQMs)
+[Demo Video](https://youtu.be/Y2NHza-pziE)
 
 ## How to install
 
